@@ -1,9 +1,11 @@
+import Picture from './picture.js'
+
 class Pet {
-    constructor(id, name, birthDate, pics, status) {
+    constructor(id, name, birthDate, status) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
-        this.pics = pics;
+        this.pictures = id;
         this.status = status;
     }
 }
