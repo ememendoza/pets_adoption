@@ -29,8 +29,14 @@ const postPicture = async (req, res) => {
 }
 
 const postBucketPicture = async (req, res) => {
-    const result = await uploadFile(req.files.file)
-    res.json({ result }) 
+    console.log(req.files.file);
+    const { name, size } = req.files.file;
+    const picture = new Picture(name, size);
+    const connection = await getConnection();
+    const dbResult = await connection.query("INSERT INTO picture SET ?", picture);
+
+    const result = await uploadFile(req.files.file);
+    res.json({ result });
 }
 
 const getBucketPicture = async (req, res) => {

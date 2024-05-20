@@ -1,9 +1,8 @@
 class Picture
 {
-    constructor (id, path, createDate) {
-        this.id = id;
+    constructor (path, size) {
         this.path = path;
-        this.createDate = createDate;
+        this.size = size;
     }
 }
 

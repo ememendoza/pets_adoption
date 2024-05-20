@@ -12,7 +12,7 @@ app.use(fileUpload({
 
 app.use(express.static('images'));
 
-app.set('port', 7000);
+app.set('port', 4000);
 
 app.use(express.json());
 
