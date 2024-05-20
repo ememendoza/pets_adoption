@@ -1,5 +1,6 @@
 import getConnection from '../database/database.js';
 import Picture from '../models/picture.js';
+import { uploadFile, getFiles, getFile, downloadFile, getFileURL } from '../config/s3.js';
 
 const getPicture = async (req, res) => {
     try {
@@ -27,7 +28,33 @@ const postPicture = async (req, res) => {
     }
 }
 
+const postBucketPicture = async (req, res) => {
+    const result = await uploadFile(req.files.file)
+    res.json({ result }) 
+}
+
+const getBucketPicture = async (req, res) => {
+    const result = await getFiles()
+    res.json(result.Contents)
+}
+
+const findBucketPicture = async (req, res) => {
+    const result = await getFileURL(req.params.fileName)
+    res.json({
+        url: result
+    })
+}
+
+const downloadBucketPicture = async (req, res) => {
+    await downloadFile(req.params.fileName)
+    res.json({message: "archivo descargado"})
+}
+
 export const methods = {
     getPicture,
     postPicture,
+    postBucketPicture,
+    getBucketPicture,
+    findBucketPicture,
+    downloadBucketPicture
 };
