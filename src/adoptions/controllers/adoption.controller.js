@@ -28,7 +28,10 @@ const postAdoption = async (req, res) => {
       adoption
     );
     res.json(result);
-  } catch (error) {}
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
 };
 export const methods = {
   getAdoption,
