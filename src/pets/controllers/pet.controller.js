@@ -15,7 +15,6 @@ const getPet = async (req, res) => {
 const postPets = async (req, res) => {
   try {
     const {
-      id,
       name,
       birthDate,
       type,
@@ -30,7 +29,6 @@ const postPets = async (req, res) => {
     } = req.body;
 
     const pet = new Pet(
-      id,
       name,
       birthDate,
       type,

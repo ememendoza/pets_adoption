@@ -1,9 +1,8 @@
-class Picture
-{
-    constructor (path, size) {
-        this.path = path;
-        this.size = size;
-    }
+class Picture {
+  constructor(name, size) {
+    this.name = name;
+    this.size = size;
+  }
 }
 
 export default Picture;
