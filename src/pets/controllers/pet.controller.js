@@ -14,9 +14,35 @@ const getPet = async (req, res) => {
 
 const postPets = async (req, res) => {
   try {
-    const { Id, Name, Birthdate } = req.body;
+    const {
+      id,
+      name,
+      birthDate,
+      type,
+      gender,
+      size,
+      color,
+      story,
+      specialSkills,
+      energyLevel,
+      compatibility,
+      status,
+    } = req.body;
 
-    const pet = new Pet(Id, Name, Birthdate);
+    const pet = new Pet(
+      id,
+      name,
+      birthDate,
+      type,
+      gender,
+      size,
+      color,
+      story,
+      specialSkills,
+      energyLevel,
+      compatibility,
+      status
+    );
     const connection = await getConnection();
     const result = await connection.query("INSERT INTO pet SET ?", pet);
     res.json(result);
