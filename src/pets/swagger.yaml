@@ -1,0 +1,155 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Petstore server."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+
+host: localhost:4000
+basePath: /api
+
+paths:
+  /pets/post:
+    post:
+      summary: Crea una nueva mascota
+      description: Crea una nueva mascota con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: pet
+          description: Información de la mascota
+          schema:
+            type: object
+            required:
+              - name
+              - birthdate
+              - gender
+              - size
+              - color
+              - story
+              - specialSkills
+              - energyLevel
+              - compatibility
+              - status
+            properties:
+              id:
+                type: integer
+                default: 0
+              name:
+                type: string
+              birthdate:
+                type: string
+              gender:
+                type: string
+              size:
+                type: string
+              color:
+                type: string
+              story:
+                type: string
+              specialSkills:
+                type: string
+              energyLevel:
+                type: integer
+              compatibility:
+                type: string
+              status:
+                type: string
+      responses:
+        201:
+          description: Mascota creada con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              pet:
+                $ref: "#/definitions/Pet"
+        400:
+          description: Error al crear la mascota
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /pets:
+    get:
+      summary: Obtiene la lista de mascotas
+      description: Obtiene la lista de mascotas existentes
+      responses:
+        200:
+          description: Lista de mascotas obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Pet"
+        404:
+          description: No se encontraron mascotas
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+  /pictures:
+    get:
+      summary: Obtiene la lista de imagenes
+      description: Obtiene las imagenes existentes
+      responses:
+        200:
+          description: Lista de imagenes obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Pet"
+        404:
+          description: No se encontraron imagenes
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+definitions:
+  Pet:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      birthdate:
+        type: string
+      gender:
+        type: string
+      size:
+        type: string
+      color:
+        type: string
+      story:
+        type: string
+      specialSkills:
+        type: string
+      energyLevel:
+        type: integer
+      compatibility:
+        type: string
+      status:
+        type: string
+  Picture:
+    type: object
+    properties:
+      id:
+      name:
+        type: string
+      size:
+        type: integer
+  MedicalData:
+    type: object
+    properties:
+      vacines:
+        type: integer
+      sterilization:
+        type: integer
+      hospitalization:
+        type: integer
