@@ -16,6 +16,7 @@ const postAdoption = async (req, res) => {
   try {
     const { adoptionDate, adoptionType, adoptionDuration, adoptionConditions } =
       req.body;
+
     const adoption = new Adoption(
       adoptionDate,
       adoptionType,

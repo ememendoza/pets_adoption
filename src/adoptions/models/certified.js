@@ -1,7 +1,7 @@
 class Certified {
   constructor(adoptionAgreement, adoptionContract, inmunizationAndHealth) {
     this.adoptionAgreement = adoptionAgreement;
-    this.adoptionContract = adoptiionContract;
+    this.adoptionContract = adoptionContract;
     this.inmunizationAndHealth = inmunizationAndHealth;
   }
 }

@@ -26,6 +26,7 @@ const postCertified = async (req, res) => {
       "INSERT INTO certified SET ?",
       certified
     );
+    res.json(result);
   } catch (error) {
     res.status(500);
     res.send(error.message);

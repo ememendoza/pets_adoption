@@ -6,7 +6,7 @@ const app = express();
 
 app.set("port", 4000);
 
-app.set(express.json());
+app.use(express.json());
 
 app.use("/api/adoption", adoptionRoutes);
 app.use("/api/certified", certifiedRoutes);
