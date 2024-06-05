@@ -15,7 +15,7 @@ const getAuth = async (req, res) => {
 const postAuth = async (req, res) => {
   try {
     const { username, password, safetyQuestion } = req.body;
-    const auth = Auth(username, password, safetyQuestion);
+    const auth = new Auth(username, password, safetyQuestion);
     const connection = await getConnection();
     const result = await connection.query("INSERT INTO auth SET ?", auth);
     res.json(result);
