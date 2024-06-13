@@ -5,6 +5,7 @@ import fileUpload from "express-fileupload";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 import express from "express";
+import authMiddleware from './middlewares/auth.js';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.set("port", 4000);
 
 app.use(express.json());
 
+app.use("/api", authMiddleware);
 app.use("/api/pets", petRoutes);
 app.use("/api/pictures", pictureRoutes);
 app.use("/api/medicalData", medicalDataRoutes);

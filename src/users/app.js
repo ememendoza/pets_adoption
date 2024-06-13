@@ -15,8 +15,7 @@ app.set("port", 4000);
 
 app.use(express.json());
 
-app.use("/api", authMiddleware)
-app.use("/token/auth", authRoutes);
+app.use("/api", authMiddleware);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/location", locationRoutes);
