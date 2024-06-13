@@ -91,25 +91,125 @@ paths:
               error:
                 type: string
 
-  /pictures:
-    get:
-      summary: Obtiene la lista de imagenes
-      description: Obtiene las imagenes existentes
-      responses:
-        200:
-          description: Lista de imagenes obtenida con éxito
+
+
+  /medical_data/post:
+    post:
+      summary: Crea un nuevo registro de datos médicos
+      description: Crea un nuevo registro de datos médicos con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: medical_data
+          description: Información de los datos médicos
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Pet"
-        404:
-          description: No se encontraron imagenes
+            type: object
+            required:
+              - vacines
+              - sterilization
+              - hospitalization
+            properties:
+              vacines:
+                type: integer
+              sterilization:
+                type: integer
+              hospitalization:
+                type: integer
+      responses:
+        201:
+          description: Registro de datos médicos creado con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              medical_data:
+                $ref: "#/definitions/MedicalData"
+        400:
+          description: Error al crear el registro de datos médicos
           schema:
             type: object
             properties:
               error:
                 type: string
 
+    /medical_data:
+    get:
+      summary: Obtiene la lista de registros de datos médicos
+      description: Obtiene la lista de registros de datos médicos existentes
+      responses:
+        200:
+          description: Lista de registros de datos médicos obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/MedicalData"
+        404:
+          description: No se encontraron registros de datos médicos
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+  /pictures/post:
+    post:
+      summary: Crea una nueva imagen
+      description: Crea una nueva imagen con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: picture
+          description: Información de la imagen
+          schema:
+            type: object
+            required:
+              - name
+              - size
+            properties:
+              name:
+                type: string
+              size:
+                type: integer
+      responses:
+        201:
+          description: Imagen creada con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              picture:
+                $ref: "#/definitions/Picture"
+        400:
+          description: Error al crear la imagen
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+    /pictures:
+    get:
+      summary: Obtiene la lista de imágenes
+      description: Obtiene la lista de imágenes existentes
+      responses:
+        200:
+          description: Lista de imágenes obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Picture"
+        404:
+          description: No se encontraron imágenes
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  
 definitions:
   Pet:
     type: object
@@ -140,6 +240,7 @@ definitions:
     type: object
     properties:
       id:
+        type: integer
       name:
         type: string
       size:

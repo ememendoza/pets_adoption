@@ -1,0 +1,271 @@
+
+swagger: "2.0"
+info:
+  description: "API para gestionar adopciones y certificados."
+  version: "1.0.0"
+  title: "Adoption and Certification API"
+
+host: localhost:4000
+basePath: /api
+
+paths:
+  /adoptions:
+    post:
+      summary: Crea una nueva adopción
+      description: Crea una nueva adopción con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: adoption
+          description: Información de la adopción
+          schema:
+            $ref: "#/definitions/Adoption"
+      responses:
+        201:
+          description: Adopción creada con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              adoption:
+                $ref: "#/definitions/Adoption"
+        400:
+          description: Error al crear la adopción
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    get:
+      summary: Obtiene la lista de adopciones
+      description: Obtiene la lista de adopciones existentes
+      responses:
+        200:
+          description: Lista de adopciones obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Adoption"
+        404:
+          description: No se encontraron adopciones
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+  /adoptions/{adoptionId}:
+    get:
+      summary: Obtiene una adopción por ID
+      description: Obtiene los detalles de una adopción específica por ID
+      parameters:
+        - name: adoptionId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Adopción obtenida con éxito
+          schema:
+            $ref: "#/definitions/Adoption"
+        404:
+          description: No se encontró la adopción
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    put:
+      summary: Actualiza una adopción por ID
+      description: Actualiza los detalles de una adopción específica por ID
+      consumes:
+        - application/json
+      parameters:
+        - name: adoptionId
+          in: path
+          required: true
+          type: integer
+        - in: body
+          name: adoption
+          description: Información actualizada de la adopción
+          schema:
+            $ref: "#/definitions/Adoption"
+      responses:
+        200:
+          description: Adopción actualizada con éxito
+          schema:
+            $ref: "#/definitions/Adoption"
+        400:
+          description: Error al actualizar la adopción
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    delete:
+      summary: Elimina una adopción por ID
+      description: Elimina una adopción específica por ID
+      parameters:
+        - name: adoptionId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Adopción eliminada con éxito
+        404:
+          description: No se encontró la adopción
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+  /certificates:
+    post:
+      summary: Crea un nuevo certificado
+      description: Crea un nuevo certificado con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: certificate
+          description: Información del certificado
+          schema:
+            $ref: "#/definitions/Certificate"
+      responses:
+        201:
+          description: Certificado creado con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              certificate:
+                $ref: "#/definitions/Certificate"
+        400:
+          description: Error al crear el certificado
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    get:
+      summary: Obtiene la lista de certificados
+      description: Obtiene la lista de certificados existentes
+      responses:
+        200:
+          description: Lista de certificados obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Certificate"
+        404:
+          description: No se encontraron certificados
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+  /certificates/{certificateId}:
+    get:
+      summary: Obtiene un certificado por ID
+      description: Obtiene los detalles de un certificado específico por ID
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Certificado obtenido con éxito
+          schema:
+            $ref: "#/definitions/Certificate"
+        404:
+          description: No se encontró el certificado
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    put:
+      summary: Actualiza un certificado por ID
+      description: Actualiza los detalles de un certificado específico por ID
+      consumes:
+        - application/json
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          type: integer
+        - in: body
+          name: certificate
+          description: Información actualizada del certificado
+          schema:
+            $ref: "#/definitions/Certificate"
+      responses:
+        200:
+          description: Certificado actualizado con éxito
+          schema:
+            $ref: "#/definitions/Certificate"
+        400:
+          description: Error al actualizar el certificado
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    delete:
+      summary: Elimina un certificado por ID
+      description: Elimina un certificado específico por ID
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Certificado eliminado con éxito
+        404:
+          description: No se encontró el certificado
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+definitions:
+  Adoption:
+    type: object
+    required:
+      - adoptionDate
+      - adoptionType
+      - adoptionDuration
+      - adoptionConditions
+    properties:
+      adoptionDate:
+        type: string
+        format: date
+      adoptionType:
+        type: string
+      adoptionDuration:
+        type: string
+      adoptionConditions:
+        type: string
+
+  Certificate:
+    type: object
+    required:
+      - adoptionAgreement
+      - adoptionContract
+      - inmunizationAndHealth
+    properties:
+      adoptionAgreement:
+        type: string
+      adoptionContract:
+        type: string
+      inmunizationAndHealth:
+        type: string

@@ -1,0 +1,203 @@
+swagger: "2.0"
+info:
+  description: "API para la gestión de usuarios, autenticación y ubicaciones"
+  version: "1.0.0"
+  title: "API de Gestión"
+
+host: localhost:4000
+basePath: /api
+
+paths:
+  /auth:
+    post:
+      summary: Crea una nueva autenticación
+      description: Crea una nueva autenticación con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: auth
+          description: Información de autenticación
+          schema:
+            $ref: "#/definitions/Auth"
+      responses:
+        201:
+          description: Autenticación creada con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              auth:
+                $ref: "#/definitions/Auth"
+        400:
+          description: Error al crear la autenticación
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+  /locations:
+    post:
+      summary: Crea una nueva ubicación
+      description: Crea una nueva ubicación con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: location
+          description: Información de la ubicación
+          schema:
+            $ref: "#/definitions/Location"
+      responses:
+        201:
+          description: Ubicación creada con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              location:
+                $ref: "#/definitions/Location"
+        400:
+          description: Error al crear la ubicación
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    get:
+      summary: Obtiene la lista de ubicaciones
+      description: Obtiene la lista de ubicaciones existentes
+      responses:
+        200:
+          description: Lista de ubicaciones obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Location"
+        404:
+          description: No se encontraron ubicaciones
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+  /users:
+    post:
+      summary: Crea un nuevo usuario
+      description: Crea un nuevo usuario con la información proporcionada
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: Información del usuario
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        201:
+          description: Usuario creado con éxito
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              user:
+                $ref: "#/definitions/User"
+        400:
+          description: Error al crear el usuario
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    get:
+      summary: Obtiene la lista de usuarios
+      description: Obtiene la lista de usuarios existentes
+      responses:
+        200:
+          description: Lista de usuarios obtenida con éxito
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        404:
+          description: No se encontraron usuarios
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+definitions:
+  Auth:
+    type: object
+    required:
+      - username
+      - password
+      - safetyQuestion
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+      safetyQuestion:
+        type: string
+
+  Location:
+    type: object
+    required:
+      - country
+      - city
+      - zone
+      - address
+      - neighborhood
+    properties:
+      country:
+        type: string
+      city:
+        type: string
+      zone:
+        type: string
+      address:
+        type: string
+      neighborhood:
+        type: string
+
+  User:
+    type: object
+    required:
+      - firstName
+      - lastName
+      - phone
+      - birthDate
+      - gender
+      - maritalStatus
+      - housingType
+      - childrenPresent
+      - petsPresent
+      - availableHours
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      phone:
+        type: string
+      birthDate:
+        type: string
+      gender:
+        type: string
+      maritalStatus:
+        type: string
+      housingType:
+        type: string
+      childrenPresent:
+        type: boolean
+      petsPresent:
+        type: boolean
+      availableHours:
+        type: string
