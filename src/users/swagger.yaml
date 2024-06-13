@@ -196,8 +196,8 @@ definitions:
       housingType:
         type: string
       childrenPresent:
-        type: boolean
+        type: integer
       petsPresent:
-        type: boolean
+        type: integer
       availableHours:
-        type: string
+        type: integer

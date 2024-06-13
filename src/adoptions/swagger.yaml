@@ -77,51 +77,7 @@ paths:
             properties:
               error:
                 type: string
-    put:
-      summary: Actualiza una adopción por ID
-      description: Actualiza los detalles de una adopción específica por ID
-      consumes:
-        - application/json
-      parameters:
-        - name: adoptionId
-          in: path
-          required: true
-          type: integer
-        - in: body
-          name: adoption
-          description: Información actualizada de la adopción
-          schema:
-            $ref: "#/definitions/Adoption"
-      responses:
-        200:
-          description: Adopción actualizada con éxito
-          schema:
-            $ref: "#/definitions/Adoption"
-        400:
-          description: Error al actualizar la adopción
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-    delete:
-      summary: Elimina una adopción por ID
-      description: Elimina una adopción específica por ID
-      parameters:
-        - name: adoptionId
-          in: path
-          required: true
-          type: integer
-      responses:
-        200:
-          description: Adopción eliminada con éxito
-        404:
-          description: No se encontró la adopción
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
+    
 
   /certificates:
     post:
@@ -191,51 +147,8 @@ paths:
             properties:
               error:
                 type: string
-    put:
-      summary: Actualiza un certificado por ID
-      description: Actualiza los detalles de un certificado específico por ID
-      consumes:
-        - application/json
-      parameters:
-        - name: certificateId
-          in: path
-          required: true
-          type: integer
-        - in: body
-          name: certificate
-          description: Información actualizada del certificado
-          schema:
-            $ref: "#/definitions/Certificate"
-      responses:
-        200:
-          description: Certificado actualizado con éxito
-          schema:
-            $ref: "#/definitions/Certificate"
-        400:
-          description: Error al actualizar el certificado
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-    delete:
-      summary: Elimina un certificado por ID
-      description: Elimina un certificado específico por ID
-      parameters:
-        - name: certificateId
-          in: path
-          required: true
-          type: integer
-      responses:
-        200:
-          description: Certificado eliminado con éxito
-        404:
-          description: No se encontró el certificado
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
+    
+    
 
 definitions:
   Adoption:
@@ -243,7 +156,6 @@ definitions:
     required:
       - adoptionDate
       - adoptionType
-      - adoptionDuration
       - adoptionConditions
     properties:
       adoptionDate:
@@ -264,8 +176,8 @@ definitions:
       - inmunizationAndHealth
     properties:
       adoptionAgreement:
-        type: string
+        type: integer
       adoptionContract:
-        type: string
+        type: integer
       inmunizationAndHealth:
-        type: string
+        type: integer
