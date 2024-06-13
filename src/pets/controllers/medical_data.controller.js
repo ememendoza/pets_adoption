@@ -4,7 +4,7 @@ import MedicalData from "../models/medical_data.js";
 const getMedicalData = async (req, res) => {
   try {
     const connection = await getConnection();
-    const result = await connection.query("SELECT * FROM medicalData");
+    const result = await connection.query("SELECT * FROM medical_data");
     res.json(result);
   } catch (error) {
     res.status(500);
@@ -23,7 +23,7 @@ const postMedicalData = async (req, res) => {
     );
     const connection = await getConnection();
     const result = await connection.query(
-      "INSERT INTO medicalData SET ?",
+      "INSERT INTO medical_data SET ?",
       medicalData
     );
     res.json(result);

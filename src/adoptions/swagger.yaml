@@ -9,7 +9,7 @@ host: localhost:4000
 basePath: /api
 
 paths:
-  /adoptions:
+  /adoption/post:
     post:
       summary: Crea una nueva adopción
       description: Crea una nueva adopción con la información proporcionada
@@ -252,7 +252,7 @@ definitions:
       adoptionType:
         type: string
       adoptionDuration:
-        type: string
+        type: integer
       adoptionConditions:
         type: string
 
