@@ -1,5 +1,5 @@
 CREATE TABLE pet (
-    id integer auto_increment, 
+    id integer, 
     name varchar(100),
     birthDate varchar(10),
     type varchar(50),
@@ -19,14 +19,14 @@ CREATE TABLE pet (
 );
 
 CREATE TABLE picture (
-    id integer auto_increment, 
+    id integer, 
     name varchar(100),
     size integer,
     primary key (id)
 );
 
 CREATE TABLE medical_data (
-    id integer auto_increment,
+    id integer,
     vacines integer,
     sterilization integer,
     hospitalization integer,

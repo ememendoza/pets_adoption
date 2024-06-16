@@ -3,7 +3,7 @@ import { methods as medicalDataController } from "../controllers/medical_data.co
 
 const router = Router();
 
-router.get("/", medicalDataController.getMedicalData);
-router.post("/post", medicalDataController.postMedicalData);
+router.get("/get", medicalDataController.get);
+router.get("/get/:id", medicalDataController.find);
 
 export default router;

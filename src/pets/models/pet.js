@@ -2,6 +2,7 @@ import Picture from "./picture.js";
 
 class Pet {
   constructor(
+    id,
     name,
     birthDate,
     type,
@@ -12,8 +13,11 @@ class Pet {
     specialSkills,
     energyLevel,
     compatibility,
-    status
+    status,
+    picture_id,
+    medical_data_id
   ) {
+    this.id = id;
     this.name = name;
     this.birthDate = birthDate;
     this.type = type;
@@ -25,6 +29,8 @@ class Pet {
     this.energyLevel = energyLevel;
     this.compatibility = compatibility;
     this.status = status;
+    this.picture_id = picture_id;
+    this.medical_data_id = medical_data_id;
   }
 }
 

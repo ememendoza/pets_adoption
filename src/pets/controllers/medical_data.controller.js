@@ -1,7 +1,7 @@
 import getConnection from "../database/database.js";
 import MedicalData from "../models/medical_data.js";
 
-const getMedicalData = async (req, res) => {
+const get = async (req, res) => {
   try {
     const connection = await getConnection();
     const result = await connection.query("SELECT * FROM medical_data");
@@ -12,19 +12,14 @@ const getMedicalData = async (req, res) => {
   }
 };
 
-const postMedicalData = async (req, res) => {
+const find = async (req, res) => {
   try {
-    const { vacines, sterilization, hospitalization } = req.body;
+    const id = req.params.id;
 
-    const medicalData = new MedicalData(
-      vacines,
-      sterilization,
-      hospitalization
-    );
     const connection = await getConnection();
     const result = await connection.query(
-      "INSERT INTO medical_data SET ?",
-      medicalData
+      "SELECT * FROM medical_data WHERE id = ?",
+      id
     );
     res.json(result);
   } catch (error) {
@@ -34,6 +29,6 @@ const postMedicalData = async (req, res) => {
 };
 
 export const methods = {
-  getMedicalData,
-  postMedicalData,
+  get,
+  find,
 };
