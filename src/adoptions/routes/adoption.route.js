@@ -3,7 +3,8 @@ import { methods as adoptionController } from "../controllers/adoption.controlle
 
 const router = Router();
 
-router.get("/", adoptionController.getAdoption);
-router.post("/post", adoptionController.postAdoption);
+router.get("/get", adoptionController.get);
+router.get("/get/:id", adoptionController.find);
+router.post("/post", adoptionController.post);
 
 export default router;

@@ -4,15 +4,7 @@ CREATE TABLE adoption (
     adoptionType varchar(20),
     adoptionDuration integer,
     adoptionConditions varchar(500),
-    certified_id integer,
-    foreign key (certified_id) references certified(id),
-    primary key (id)
-);
-
-CREATE TABLE certified (
-    id integer auto_increment, 
-    adoptionAgreement integer,
-    adoptionContract integer, 
-    inmunizationAndHealth integer,
+    pet_id integer,
+    user_id integer,
     primary key (id)
 );
