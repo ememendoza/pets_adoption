@@ -41,7 +41,8 @@ const post = async (req, res) => {
       password,
       role,
     } = req.body;
-    const { auth_id, location_id } = id;
+    const auth_id = id;
+    const location_id = id;
 
     const auth = new Auth(id, username, password, role);
     const location = new Location(
@@ -68,13 +69,9 @@ const post = async (req, res) => {
       location_id
     );
 
-    await connection.beginTransaction();
-
     const authResult = await insertAuth(auth, connection);
     const locationResult = await insertLocation(location, connection);
     const userResult = (await connection).query("INSERT INTO user SET ?", user);
-
-    await connection.commit();
 
     res.json({
       auth: authResult,
@@ -91,8 +88,7 @@ const get = async (req, res) => {
     const id = req.params.id;
     const connection = await getConnection();
     const result = await connection.query(
-      "SELECT * FROM user WHEWRE id = ? ",
-      id
+      `SELECT * FROM user WHERE id = ${id}`
     );
     res.json(result);
   } catch (error) {
