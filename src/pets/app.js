@@ -28,6 +28,6 @@ app.use("/api", authMiddleware);
 app.use("/api/pets", petRoutes);
 app.use("/api/pictures", pictureRoutes);
 app.use("/api/medicalData", medicalDataRoutes);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger/api", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default app;

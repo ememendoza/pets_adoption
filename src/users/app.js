@@ -4,8 +4,7 @@ import authRoutes from "./routes/auth.route.js";
 import locationRoutes from "./routes/location.route.js";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
-import authMiddleware from './middlewares/auth.js';
-
+import authMiddleware from "./middlewares/auth.js";
 
 const app = express();
 
@@ -16,9 +15,9 @@ app.set("port", 4000);
 app.use(express.json());
 
 app.use("/api", authMiddleware);
-app.use("/api/auth", authRoutes);
+app.use("/login", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/location", locationRoutes);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger/api", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default app;

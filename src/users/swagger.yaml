@@ -7,6 +7,16 @@ info:
 host: localhost:4000
 basePath: /api
 
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: "Token de autenticación JWT"
+
+security:
+  - Bearer: []
+
 paths:
   /auth:
     post:
@@ -28,8 +38,10 @@ paths:
             properties:
               message:
                 type: string
-              auth:
-                $ref: "#/definitions/Auth"
+              token:
+                type: string
+              expires_in:
+                type: integer
         400:
           description: Error al crear la autenticación
           schema:
@@ -44,6 +56,8 @@ paths:
       description: Crea una nueva ubicación con la información proporcionada
       consumes:
         - application/json
+      security:
+        - Bearer: []
       parameters:
         - in: body
           name: location
@@ -70,6 +84,8 @@ paths:
     get:
       summary: Obtiene la lista de ubicaciones
       description: Obtiene la lista de ubicaciones existentes
+      security:
+        - Bearer: []
       responses:
         200:
           description: Lista de ubicaciones obtenida con éxito
@@ -91,6 +107,8 @@ paths:
       description: Crea un nuevo usuario con la información proporcionada
       consumes:
         - application/json
+      security:
+        - Bearer: []
       parameters:
         - in: body
           name: user
@@ -117,6 +135,8 @@ paths:
     get:
       summary: Obtiene la lista de usuarios
       description: Obtiene la lista de usuarios existentes
+      security:
+        - Bearer: []
       responses:
         200:
           description: Lista de usuarios obtenida con éxito

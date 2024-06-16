@@ -16,6 +16,6 @@ app.use(express.json());
 app.use("/api", authMiddleware);
 app.use("/api/adoption", adoptionRoutes);
 app.use("/api/certified", certifiedRoutes);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger/api", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default app;

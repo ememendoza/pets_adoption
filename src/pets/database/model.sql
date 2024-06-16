@@ -1,4 +1,4 @@
-CREATE TABLE pet {
+CREATE TABLE pet (
     id integer auto_increment, 
     name varchar(100),
     birthDate varchar(10),
@@ -11,20 +11,24 @@ CREATE TABLE pet {
     energyLevel integer,
     compatibility integer,
     status varchar(10),
+    picture_id integer,
+    medical_data_id integer,
+    foreign key (picture_id) references picture(id),
+    foreign key (medical_data_id) references medical_data(id),
     primary key(id)
-};
+);
 
-CREATE TABLE picture {
+CREATE TABLE picture (
     id integer auto_increment, 
     name varchar(100),
     size integer,
     primary key (id)
-};
+);
 
-CREATE TABLE medical_data {
+CREATE TABLE medical_data (
     id integer auto_increment,
     vacines integer,
     sterilization integer,
     hospitalization integer,
     primary key (id)
-};
+);

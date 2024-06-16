@@ -1,5 +1,6 @@
 class Location {
-  constructor(country, city, zone, address, neighborhood) {
+  constructor(id, country, city, zone, address, neighborhood) {
+    this.id = id;
     this.country = country;
     this.city = city;
     this.zone = zone;

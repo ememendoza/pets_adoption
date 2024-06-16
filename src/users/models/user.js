@@ -1,5 +1,6 @@
 class User {
   constructor(
+    id,
     firstName,
     lastName,
     phone,
@@ -9,8 +10,11 @@ class User {
     housingType,
     childrenPresent,
     petsPresent,
-    availableHours
+    availableHours,
+    auth_id,
+    location_id
   ) {
+    this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.phone = phone;
@@ -21,6 +25,8 @@ class User {
     this.childrenPresent = childrenPresent;
     this.petsPresent = petsPresent;
     this.availableHours = availableHours;
+    this.auth_id = auth_id;
+    this.location_id = location_id;
   }
 }
 

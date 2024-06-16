@@ -4,6 +4,8 @@ CREATE TABLE adoption (
     adoptionType varchar(20),
     adoptionDuration integer,
     adoptionConditions varchar(500),
+    certified_id integer,
+    foreign key (certified_id) references certified(id),
     primary key (id)
 );
 

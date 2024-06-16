@@ -1,13 +1,13 @@
 CREATE TABLE auth (
-    id integer auto_increment, 
+    id integer, 
     username varchar(100),
     password varchar(100),
-    safetyQuestion varchar(100),
+    role integer,
     primary key(id)
 );
 
 CREATE TABLE location (
-    id integer auto_increment,
+    id integer,
     country varchar(100),
     city varchar(100),
     zone varchar(100),
@@ -17,7 +17,7 @@ CREATE TABLE location (
 );
 
 CREATE TABLE user (
-    id integer auto_increment,
+    id integer,
     firstName varchar(100),
     lastName varchar(100),
     phone varchar(10),
@@ -28,5 +28,9 @@ CREATE TABLE user (
     childrenPresent integer,
     petsPresent integer,
     availableHours integer,
+    auth_id integer,
+    location_id integer,
+    foreign key (auth_id) references auth(id),
+    foreign key (location_id) references location(id),
     primary key(id)
 );

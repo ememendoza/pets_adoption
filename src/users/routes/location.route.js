@@ -3,7 +3,6 @@ import { methods as locationController } from "../controllers/location.controlle
 
 const router = Router();
 
-router.get("/", locationController.getLocation);
-router.post("/post", locationController.postLocation);
+router.get("/get/:id", locationController.get);
 
 export default router;

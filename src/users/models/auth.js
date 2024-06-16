@@ -1,8 +1,9 @@
 class Auth {
-  constructor(username, password, safetyQuestion) {
+  constructor(id, username, password, role) {
+    this.id = id;
     this.username = username;
     this.password = password;
-    this.safetyQuestion = safetyQuestion;
+    this.role = role;
   }
 }
 
